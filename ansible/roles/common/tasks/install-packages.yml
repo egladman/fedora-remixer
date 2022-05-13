@@ -1,0 +1,32 @@
+---
+
+- name: Install packages
+  dnf:
+    name:
+      - automake
+      - bash
+      - curl
+      - flatpak
+      - gcc
+      - gcc-c++
+      - git
+      - gnupg2
+      - gdm
+      - gnome-keyring
+      - gnome-menus
+      - gnome-screenshot
+      - gnome-shell
+      - gnome-terminal
+      - gnome-tweaks
+      - nautilus
+      - jq
+      - kitty
+      - llvm
+      - make
+      - openssl-devel
+      - sudo
+      - sway
+      - vim-minimal
+      - xz-devel
+      - zlib-devel
+    state: latest

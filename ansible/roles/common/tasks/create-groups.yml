@@ -1,0 +1,4 @@
+- name: Ensure group '{{ nonroot_group }}' exists
+  ansible.builtin.group:
+    name: '{{ nonroot_group }}'
+    state: present

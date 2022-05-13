@@ -1,0 +1,8 @@
+---
+
+- name: Ensure group '{{ nonroot_user }}' exists
+  ansible.builtin.user:
+    name: '{{ nonroot_user }}'
+    shell: /bin/bash
+    groups: '{{ nonroot_group }},wheel'
+    append: yes
