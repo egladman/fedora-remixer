@@ -1,0 +1,2 @@
+nonroot_user: ichiban
+nonroot_group: '{{ nonroot_user }}'

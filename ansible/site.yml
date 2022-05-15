@@ -2,4 +2,7 @@
 
 - hosts: all
   roles:
-    - common
+    - {role: common, tags: 'core'}
+    - {role: development, tags: 'devel'}
+    - {role: desktop-i3, tags: 'i3'}
+    - {role: desktop-sway, tags: 'sway'}

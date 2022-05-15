@@ -1,0 +1,28 @@
+# /etc/gdm/custom.conf DefaultSession is not honored. This is a temporary workaround
+- name: Capture files to delete
+  find:
+    paths:
+      - /usr/share/xsessions
+      - /usr/share/wayland-sessions
+    file_type: file
+    excludes: 
+      - '{{ session }}.desktop'
+  register: found_files
+
+- name: Delete unused .desktop files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ found_files['files'] }}"
+
+# Andaconda overwrites /etc/gdm/custom.conf in root/anaconda-ks.cfg
+- name: Create file gdm/custom.conf
+  ansible.builtin.template:
+    src: gdm/custom.conf.j2
+    dest: /etc/gdm/custom.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Manually set SELinux context for gdm/custom.conf
+  ansible.builtin.command: setfattr -n security.selinux -v system_u:object_r:xdm_etc_t:s0 /etc/gdm/custom.conf

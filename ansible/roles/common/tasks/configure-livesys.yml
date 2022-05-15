@@ -1,0 +1,28 @@
+# We must ignore the selinux state since we're running inside a chroot
+- name: Set SELinux context for file /usr/libexec/livesys
+  community.general.sefcontext:
+    target: '/usr/libexec/livesys/(/.*)?'
+    setype: bin_t
+    ignore_selinux_state: yes
+    state: present
+
+- name: Create directory /usr/libexec/livesys
+  ansible.builtin.file:
+    path: /usr/libexec/livesys
+    state: directory
+    mode: '0755'
+
+- name: Create file /usr/libexec/livesys/setup
+  ansible.builtin.template:
+    src: libexec/livesys/setup.sh.j2
+    dest: /usr/libexec/livesys/setup
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Manually set SELinux context for /usr/libexec/livesys/setup
+  ansible.builtin.command: setfattr -n security.selinux -v system_u:object_r:bin_t:s0 /usr/libexec/livesys/setup
+
+#- name: Apply new SELinux file context to filesystem
+#  ansible.builtin.command: restorecon -irvF /usr/libexec/livesys/
+

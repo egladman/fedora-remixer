@@ -1,0 +1,19 @@
+---
+
+- name: Install packages
+  dnf:
+    name:
+      - automake
+      - curl
+      - gcc
+      - gcc-c++
+      - git
+      - gnupg2
+      - jq
+      - kitty
+      - llvm
+      - make
+      - openssl-devel
+      - xz-devel
+      - zlib-devel
+    state: latest

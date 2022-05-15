@@ -1,0 +1,12 @@
+[Unit]
+Description=Prepare the live boot environment
+After=sysinit.target
+Before=firstboot-text.service firstboot-graphical.service mdmonitor.service mdmonitor-takeover.service crond.service atd.service crond.service lldpad.service fcoe.service multipathd.service
+ 
+[Service]
+ExecStart=-/usr/libexec/livesys/setup
+Type=oneshot
+TimeoutSec=30
+ 
+[Install]
+WantedBy=basic.target

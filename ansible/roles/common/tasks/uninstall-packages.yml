@@ -1,33 +1,38 @@
 ---
 
-- name: Uninstall packages
-  dnf:
-    name:
-
-      - cheese
-      - cups
-      - gfbgraph
-      - gnome-boxes
-      - gnome-calendar
-      - gnome-contacts
-      - gnome-dictionary
-      - gnome-documents
-      - gnome-getting-started-docs
-      - gnome-initial-setup
-      - gnome-maps
-      - gnome-online-miners
-      - gnome-photos
-      - gnome-software
-      - gnome-user-docs
-      - gnome-user-share
-      - gnome-video-effects
-      - gnome-weather
-      - libreoffice*
-      - nano
-      - simple-scan
-      - totem
-      - tracker-miners
-      - yelp
-    state: absent
-
-
+# - name: Uninstall packages
+#   dnf:
+#     name:
+#       - cheese
+#       - cups
+#       - firefox
+#       - gfbgraph
+#       - gedit
+#       - gnome-abrt
+#       - gnome-boxes
+#       - gnome-calendar
+#       - gnome-contacts
+#       - gnome-clocks
+#       - gnome-dictionary
+#       - gnome-documents
+#       - gnome-getting-started-docs
+#       - gnome-logs
+#       - gnome-maps
+#       - gnome-online-miners
+#       - gnome-photos
+#       - gnome-remote-desktop
+#       - gnome-screenshot
+#       - gnome-software
+#       - gnome-system-monitor
+#       - gnome-user-docs
+#       - gnome-tour
+#       - gnome-video-effects
+#       - gnome-weather
+#       - libreoffice*
+#       - nano
+#       - rhythmbox
+#       - simple-scan
+#       - totem
+#       - tracker-miners
+#       - yelp
+#     state: absent

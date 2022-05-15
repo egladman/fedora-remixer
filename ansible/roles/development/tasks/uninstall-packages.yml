@@ -1,0 +1,7 @@
+---
+
+# - name: Uninstall packages
+#   dnf:
+#     name:
+#       - foo
+#     state: absent
