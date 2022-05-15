@@ -20,8 +20,20 @@
     group: root
     mode: '0755'
 
+- name: Create file /usr/libexec/livesys/graphical
+  ansible.builtin.template:
+    src: libexec/livesys/graphical.sh.j2
+    dest: /usr/libexec/livesys/graphical
+    owner: root
+    group: root
+    mode: '0755'
+
+# FIXME
 - name: Manually set SELinux context for /usr/libexec/livesys/setup
   ansible.builtin.command: setfattr -n security.selinux -v system_u:object_r:bin_t:s0 /usr/libexec/livesys/setup
+
+- name: Manually set SELinux context for /usr/libexec/livesys/graphical
+  ansible.builtin.command: setfattr -n security.selinux -v system_u:object_r:bin_t:s0 /usr/libexec/livesys/graphical
 
 #- name: Apply new SELinux file context to filesystem
 #  ansible.builtin.command: restorecon -irvF /usr/libexec/livesys/

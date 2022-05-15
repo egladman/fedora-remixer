@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Modified from /etc/rc.d/init.d/livesys-late
+
+set -e
+
+# Read /proc/cmdline
+argv=($(<"/proc/cmdline"))
+
+# Parse kernel parameters
+for val in "${argv[@]}"; do
+    case "$val" in
+        ks=*)
+            ks="--kickstart=${val#ks=}"
+            ;;
+        xdriver=*)
+            xdriver="${val#xdriver=}"
+            ;;
+    esac
+done
+
+# Start anaconda installer if one of the following parameters is specified
+if [[ "${argv[*]}" == *liveinst* ]]; then
+    printf '%s\n' "Launching installer in graphics mode"
+    plymouth --quit || :
+    /usr/sbin/liveinst $ks
+elif [[ "${argv[*]}" == *textinst* ]]; then
+    printf '%s\n' "Launching installer in text mode"
+    plymouth --quit || :
+    /usr/sbin/liveinst --text $ks
+fi
+
+# Configure X, allowing user to override xdriver
+if [[ -n "$xdriver" ]]; then
+    printf '%s\n' "Creating /etc/X11/xorg.conf.d/00-xdriver.conf"
+cat > /etc/X11/xorg.conf.d/00-xdriver.conf <<FOE
+Section "Device"
+	Identifier "Videocard0"
+	Driver "$xdriver"
+EndSection
+FOE
+fi

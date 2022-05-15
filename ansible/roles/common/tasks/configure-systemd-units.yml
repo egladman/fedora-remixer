@@ -1,6 +1,5 @@
 # We must ignore the selinux state since we're running inside a chroot
 
-
 # - name: Set SELinux context for systemd unit livesys2.service
 #   community.general.sefcontext:
 #     target: /etc/systemd/system/(/.*)?
@@ -16,20 +15,37 @@
     group: root
     mode: '0644'
 
+- name: Create systemd unit livesys2-graphical.service
+  ansible.builtin.template:
+    src: systemd/livesys-graphical.service.j2
+    dest: /etc/systemd/system/livesys2-graphical.service
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Enable systemd unit livesys2.service
   ansible.builtin.systemd:
     name: livesys2.service
     enabled: yes
 
+- name: Enable systemd unit livesys2-graphical.service
+  ansible.builtin.systemd:
+    name: livesys2-graphical.service
+    enabled: yes
+
+# This the default service that comes preinstalled
 - name: Disable systemd unit livesys.service
   ansible.builtin.systemd:
     name: livesys.service
     enabled: no
 
+# FIXME
 # Forceably set SELinux context. In my testing 'restorecon' did not work on a host with selinux disabled and while chrooted
-
 - name: Manually set SELinux context for systemd unit livesys2.service
   ansible.builtin.command: setfattr -n security.selinux -v system_u:object_r:systemd_unit_file_t:s0 /etc/systemd/system/livesys2.service
+
+- name: Manually set SELinux context for systemd unit livesys2-late.service
+  ansible.builtin.command: setfattr -n security.selinux -v system_u:object_r:systemd_unit_file_t:s0 /etc/systemd/system/livesys2-graphical.service
 
 #- name: Update SELinux file context to /etc/systemd/system
 #  ansible.builtin.command: restorecon -irvF /etc/systemd/system/

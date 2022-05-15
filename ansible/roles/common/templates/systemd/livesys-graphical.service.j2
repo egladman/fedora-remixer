@@ -1,0 +1,14 @@
+## https://bugzilla.redhat.com/show_bug.cgi?id=739446
+[Unit]
+Description=Prepare the live boot environment: desktop
+After=livesys2.service
+Before=prefdm.service 
+ 
+[Service]
+ExecStart=-/usr/libexec/livesys/graphical
+Type=oneshot
+TimeoutSec=0
+RemainAfterExit=yes
+ 
+[Install]
+WantedBy=multi-user.target
