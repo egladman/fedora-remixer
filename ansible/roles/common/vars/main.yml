@@ -5,5 +5,5 @@ live_group: '{{ live_user }}'
 
 live_hostname: localhost-live
 
-live_auto_login_enabled: false
+live_auto_login_enabled: true
 live_auto_login_user: '{{ nonroot_user }}'

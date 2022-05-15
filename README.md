@@ -19,12 +19,14 @@ ansible-galaxy install -r ansible/requirements.yml
 
 *Note:* Elevated privileges are required since we're using chroots, and mounting loop devices.
 
-| Environment Variable     | Description                                        | Default Value | Available Values                   |
-|--------------------------|----------------------------------------------------|---------------|------------------------------------|
-| RMX_OUTPUT_DIR           | Directory to save built iso                        | `""`          |                                    |
-| RMX_LIVE_PREFIX          | Directory where squashfs and rootfs `.img` reside  | `LiveOS`      |                                    |
-| RMX_SQUASHFS_COMPRESSION | Compression type used by `mksquashfs`              | `xz`          | `gzip`, `lzma`, `lzo`, `lz4`, `xz` |
-| RMX_ANSIBLE_TAGS         | Custom image be specifying additional ansible tags | `core`        | `core`, `core,devel`               |
+| Environment Variable         | Description                                        | Default Value      | Available Values                   |
+|------------------------------|----------------------------------------------------|--------------------|------------------------------------|
+| RMX_OUTPUT_DIR               | Directory to save built iso                        | `""`               |                                    |
+| RMX_LIVE_PREFIX              | Directory where squashfs and rootfs `.img` reside  | `LiveOS`           |                                    |
+| RMX_SQUASHFS_COMPRESSION     | Compression type used by `mksquashfs`              | `xz`               | `gzip`, `lzma`, `lzo`, `lz4`, `xz` |
+| RMX_ANSIBLE_TAGS             | Custom image be specifying additional ansible tags | `core`             | `core`, `core,devel`               |
+| RMX_ANSIBLE_OVERRIDES_JSON   | JSON path to ansible extra value overrides         | `../overrides.json`|                                    |
+| RMX_ANSIBLE_IGNORE_OVERRIDES | Do not apply ansible json overrides                | `0`                | `0`, `1`                           |
 
 ### Gnome
 

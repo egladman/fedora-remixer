@@ -1,0 +1,5 @@
+- name: Disable systemd unit gdm.service
+  ansible.builtin.systemd:
+    name: gdm.service
+    enabled: no
+  when: not gdm_enabled

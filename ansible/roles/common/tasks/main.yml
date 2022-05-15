@@ -1,6 +1,4 @@
 - import_tasks: uninstall-packages.yml
 - import_tasks: install-packages.yml
-- import_tasks: create-groups.yml
-- import_tasks: create-users.yml
 - import_tasks: configure-livesys.yml
 - import_tasks: install-systemd-units.yml

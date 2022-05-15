@@ -8,9 +8,13 @@ trap cleanup ERR
 # RMX_LIVE_PREFIX
 # RMX_SQUASHFS_COMPRESSION
 # RMX_ANSIBLE_TAGS
+# RMX_ANSIBLE_IGNORE_OVERRIDES
+# RMX_ANSIBLE_OVERRIDES_JSON
 
 RMX_LIVE_PREFIX="${RMX_LIVE_PREFIX:-LiveOS}"
 RMX_ANSIBLE_TAGS="${RMX_ANSIBLE_TAGS:-core}"
+RMX_ANSIBLE_OVERRIDES_JSON="${RMX_ANSIBLE_OVERRIDES_JSON:-../overrides.json}"
+RMX_ANSIBLE_IGNORE_OVERRIDES=${RMX_ANSIBLE_IGNORE_OVERRIDES:-0}
 
 iso_path="${1:?}"
 iso_label="$(isoinfo -d -i "$iso_path" | sed -n 's/Volume id: //p')"
@@ -154,8 +158,13 @@ image_modify() {
         export ANSIBLE_COLLECTIONS_PATHS="/home/${SUDO_USER}/.ansible/collections:/usr/share/ansible/collections"
     fi
 
+    if [ $RMX_ANSIBLE_IGNORE_OVERRIDES -eq 0 -a -f "$RMX_ANSIBLE_OVERRIDES_JSON" ]; then
+        log "Overriding Ansible values with '${RMX_ANSIBLE_OVERRIDES_JSON}'"
+        set -- --extra-vars "@${RMX_ANSIBLE_OVERRIDES_JSON}"
+    fi
+
     log "Running ansible"
-    ansible-playbook --connection=chroot --inventory "${root_path}," --tags "${RMX_ANSIBLE_TAGS}" site.yml
+    ansible-playbook --connection=chroot --inventory "${root_path}," --tags "${RMX_ANSIBLE_TAGS}" "$@" site.yml
 
     log "Removing path '${root_path}/etc/resolv.conf'"
     rm -f "${root_path}/etc/resolv.conf"
