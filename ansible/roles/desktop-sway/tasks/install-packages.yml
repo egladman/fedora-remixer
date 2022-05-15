@@ -3,5 +3,5 @@
 - name: Install packages
   dnf:
     name:
-      - i3
+      - sway
     state: latest
