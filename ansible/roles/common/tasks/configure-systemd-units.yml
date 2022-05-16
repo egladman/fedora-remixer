@@ -38,6 +38,7 @@
   ansible.builtin.systemd:
     name: livesys.service
     enabled: no
+    masked: yes
 
 # FIXME
 # Forceably set SELinux context. In my testing 'restorecon' did not work on a host with selinux disabled and while chrooted
