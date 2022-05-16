@@ -2,6 +2,25 @@
 
 # Modified from /etc/rc.d/init.d/livesys
 
+# Read /proc/cmdline
+argv=($(<"/proc/cmdline"))
+
+# Parse kernel parameters
+for val in "${argv[@]}"; do
+    case "$val" in
+        ks=*)
+            ks="--kickstart=${val#ks=}"
+            ;;
+        xdriver=*)
+            xdriver="${val#xdriver=}"
+            ;;
+    esac
+done
+
+if [[ "${argv[*]}" != *rd.live.image* ]] || [[ -e /var/cache/livesys/setup-completed ]]; then
+    exit 0
+fi
+
 # Add static hostname to work around xauth bug
 # https://bugzilla.redhat.com/show_bug.cgi?id=679486
 # the hostname must be something else than 'localhost'
@@ -125,3 +144,10 @@ fi
 # Make sure to set the right permissions and selinux contexts
 chown -R {{ live_user }}:{{ live_group }} /home/{{ live_user }}/
 restorecon -R /home/{{ live_user }}/
+
+if [[ ! -d /var/cache/livesys ]]; then
+    mkdir -p /var/cache/livesys
+fi
+
+# Touch
+>/var/cache/livesys/graphical-completed

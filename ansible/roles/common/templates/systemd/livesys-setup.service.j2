@@ -6,6 +6,7 @@ Before=firstboot-text.service firstboot-graphical.service mdmonitor.service mdmo
  
 [Service]
 ExecStart=-/usr/libexec/livesys/setup
+ExecStartPost=/bin/systemctl disable livesys2.service
 Type=oneshot
 TimeoutSec=30
  

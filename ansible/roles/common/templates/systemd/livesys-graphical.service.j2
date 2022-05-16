@@ -6,6 +6,7 @@ Before=prefdm.service
  
 [Service]
 ExecStart=-/usr/libexec/livesys/graphical
+ExecStartPost=/bin/systemctl disable livesys2-graphical.service
 Type=oneshot
 TimeoutSec=0
 RemainAfterExit=yes

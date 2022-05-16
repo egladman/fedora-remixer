@@ -19,6 +19,10 @@ for val in "${argv[@]}"; do
     esac
 done
 
+if [[ "${argv[*]}" != *rd.live.image* ]] || [[ -e /var/cache/livesys/graphical-completed ]]; then
+    exit 0
+fi
+
 # Start anaconda installer if one of the following parameters is specified
 if [[ "${argv[*]}" == *liveinst* ]]; then
     printf '%s\n' "Launching installer in graphics mode"
@@ -40,3 +44,10 @@ Section "Device"
 EndSection
 FOE
 fi
+
+if [[ ! -d /var/cache/livesys ]]; then
+    mkdir -p /var/cache/livesys
+fi
+
+# Touch
+>/var/cache/livesys/graphical-completed
