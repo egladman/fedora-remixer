@@ -3,7 +3,10 @@
 - name: Install packages
   dnf:
     name:
+      - anaconda
+      - anaconda-live
       - bash
+      - dnf-plugins-core
       - flatpak
       - nautilus
       - sudo
