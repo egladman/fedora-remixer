@@ -3,3 +3,8 @@
     name: gdm.service
     enabled: no
   when: not gdm_enabled
+
+- name: Enable systemd unit docker.service
+  ansible.builtin.systemd:
+    name: docker.service
+    enabled: yes

@@ -1,10 +1,13 @@
 ---
 
 # openssl passwd -1 {{ nonroot_user }}
+# password is same as username
 - name: Ensure user '{{ nonroot_user }}' exists
   ansible.builtin.user:
     name: '{{ nonroot_user }}'
+    uid: '{{ nonroot_user_id }}'
     password: '$1$Z4Btxtic$OyRxquW2NVLvF4FK1zffl0'
     shell: /bin/bash
-    groups: '{{ nonroot_group }},wheel'
+    groups: '{{ nonroot_group }},wheel,docker'
     append: yes
+  when: nonroot_user_enabled

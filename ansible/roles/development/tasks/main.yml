@@ -1,5 +1,6 @@
-- import_tasks: configure-systemd-units.yml
 - import_tasks: create-groups.yml
 - import_tasks: create-users.yml
 - import_tasks: uninstall-packages.yml
 - import_tasks: install-packages.yml
+- import_tasks: install-docker.yml
+- import_tasks: configure-systemd-units.yml

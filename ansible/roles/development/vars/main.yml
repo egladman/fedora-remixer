@@ -1,4 +1,9 @@
+nonroot_user_enabled: false
+
 nonroot_user: ichiban
+nonroot_user_id: 1000
 nonroot_group: '{{ nonroot_user }}'
+nonroot_group_id: '{{ nonroot_user_id }}'
 
 gdm_enabled: false
+

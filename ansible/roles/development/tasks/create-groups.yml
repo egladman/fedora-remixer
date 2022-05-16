@@ -1,4 +1,11 @@
 - name: Ensure group '{{ nonroot_group }}' exists
   ansible.builtin.group:
     name: '{{ nonroot_group }}'
+    gid: '{{ nonroot_group_id }}'
+    state: present
+  when: nonroot_user_enabled
+
+- name: Ensure group docker exists
+  ansible.builtin.group:
+    name: docker
     state: present
