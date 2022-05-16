@@ -1,38 +1,56 @@
 ---
 
-# - name: Uninstall packages
-#   dnf:
-#     name:
-#       - cheese
-#       - cups
-#       - firefox
-#       - gfbgraph
-#       - gedit
-#       - gnome-abrt
-#       - gnome-boxes
-#       - gnome-calendar
-#       - gnome-contacts
-#       - gnome-clocks
-#       - gnome-dictionary
-#       - gnome-documents
-#       - gnome-getting-started-docs
-#       - gnome-logs
-#       - gnome-maps
-#       - gnome-online-miners
-#       - gnome-photos
-#       - gnome-remote-desktop
-#       - gnome-screenshot
-#       - gnome-software
-#       - gnome-system-monitor
-#       - gnome-user-docs
-#       - gnome-tour
-#       - gnome-video-effects
-#       - gnome-weather
-#       - libreoffice*
-#       - nano
-#       - rhythmbox
-#       - simple-scan
-#       - totem
-#       - tracker-miners
-#       - yelp
-#     state: absent
+- name: Get installed packages
+  dnf:  list=installed
+  register: dnf_packages
+  changed_when: False
+
+- debug:
+    var: dnf_packages
+
+- name: Uninstall packages
+  dnf:
+    name:
+      - cheese
+      - eog
+      - evolution
+      - evolution-ews
+      - evolution-help
+      - fedora-bookmarks
+      - fedora-chromium-config
+      - firefox
+      - gfbgraph
+      - gedit
+      - gnome-abrt
+      - gnome-boxes
+      - gnome-calendar
+      - gnome-characters
+      - gnome-contacts
+      - gnome-color-manager
+      - gnome-clocks
+      - gnome-dictionary
+      - gnome-documents
+      - gnome-getting-started-docs
+      - gnome-logs
+      - gnome-maps
+      - gnome-online-miners
+      - gnome-photos
+      - gnome-remote-desktop
+      - gnome-screenshot
+      - gnome-software
+      - gnome-system-monitor
+      - gnome-user-docs
+      - gnome-tour
+      - gnome-video-effects
+      - gnome-weather
+      - libreoffice*
+      - nano
+      - problem-reporting
+      - rhythmbox
+      - sane-airscan
+      - simple-scan
+      - speech-dispatcher
+      - totem
+      - tracker-miners
+      - yelp
+    state: absent
