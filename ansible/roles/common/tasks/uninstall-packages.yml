@@ -23,6 +23,8 @@
       - gedit
       - gnome-abrt
       - gnome-boxes
+      - gnome-backgrounds
+      - gnome-calculator
       - gnome-calendar
       - gnome-characters
       - gnome-contacts
@@ -40,16 +42,30 @@
       - gnome-software
       - gnome-system-monitor
       - gnome-user-docs
+      - gnome-terminal*
+      - gnome-themes*
       - gnome-tour
       - gnome-video-effects
       - gnome-weather
+      - google-carlito-fonts
+      - google-droid-sans-fonts
+      - ibus-hangul
+      - ibus-kkc
+      - ibus-libpinyin
+      - ibus-libzhuyin
+      - ibus-m17n
+      - ibus-typing-booster
+      - khmeros-base-fonts
       - libreoffice*
+      - libreport
       - nano
+      - nano-default-editor
       - problem-reporting
       - rhythmbox
       - sane-airscan
       - simple-scan
       - speech-dispatcher
+      - thai-scalable*
       - totem
       - tracker-miners
       - yelp
