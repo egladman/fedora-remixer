@@ -3,5 +3,12 @@
 - name: Install packages
   dnf:
     name:
+      - arandr
+      - dmenu
+      - feh
       - i3
+      - network-manager-applet
+      - picom
+      - polybar
+      - xsetroot
     state: latest

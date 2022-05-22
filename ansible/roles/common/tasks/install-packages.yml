@@ -8,7 +8,9 @@
       - bash
       - dnf-plugins-core
       - flatpak
+      - fira-code-fonts
       - nautilus
+      - stow
       - sudo
       - vim-minimal
     state: latest
