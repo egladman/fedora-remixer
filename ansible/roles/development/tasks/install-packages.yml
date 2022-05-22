@@ -19,6 +19,5 @@
       - qemu-user-static
       - virt-manager
       - xz-devel
-      - yq
       - zlib-devel
     state: latest
