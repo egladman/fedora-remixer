@@ -4,10 +4,11 @@
   dnf:
     name:
       - arandr
+      - autorandr
       - dmenu
+      - dunst
       - feh
       - i3
-      - network-manager-applet
       - picom
       - polybar
       - xsetroot

@@ -64,6 +64,10 @@ systemctl stop abrtd.service 2> /dev/null || :
 # Don't sync the system clock when running live (RHBZ #1018162)
 sed -i 's/rtcsync//' /etc/chrony.conf
 
+# Prevent i3 wizard from running on start
+# mkdir -p /home/{{ live_user }}/.i3
+# cp /etc/i3/config /home/{{ live_user }}/.i3/config
+
 # disable gnome-software automatically downloading updates
 cat >> /usr/share/glib-2.0/schemas/org.gnome.software.gschema.override << FOE
 [org.gnome.software]

@@ -16,6 +16,7 @@
       - make
       - openssh
       - openssl-devel
+      - starship
       - qemu-user-static
       - virt-manager
       - xz-devel
