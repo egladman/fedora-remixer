@@ -5,6 +5,7 @@
     name:
       - arandr
       - autorandr
+      - blueman
       - dmenu
       - dunst
       - feh
